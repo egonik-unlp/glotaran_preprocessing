@@ -5,6 +5,7 @@ import os
 import pandas as pd
 import numpy as np
 import sys
+import re
 
 
 
@@ -25,8 +26,8 @@ class Glotafile:
     @property
     def headers(self):
         wavelengths=self.parse_wavelengths()
-        headers_=np.zeros((int(wavelengths.shape[0]),4),dtype=object)
-        headers_[0]=[self.file,"Holi","wavelength explicit","intervalnr {}".format(wavelengths.shape[0])]
+        headers_=np.full((int(wavelengths.shape[0]),4),"",dtype=object)
+        headers_[0]=[self.file,"Holi","wavelength explicit","intervalnr {}".format(wavelengths.shape[0]-1)]
         return np.vstack((headers_.T,wavelengths))
     @property
     def body(self):
@@ -55,7 +56,7 @@ if __name__=="__main__":
                  path=os.path.join(os.getcwd(), file)
                  glo=Glotafile(path).build()
         else:
-            glo=Glotafile(sys.argv[1][-4:]).build()
+            glo=Glotafile(sys.argv[1]).build()
     else:
         for param in sys.argv[1:]:
             if param[-4:]=='.txt':
