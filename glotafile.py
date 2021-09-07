@@ -40,7 +40,7 @@ class Glotafile:
 
     def build(self, filename=None):
         if not filename:
-            filename="{}_glotaran.ascii".format(self.file[:-4])
+            filename="results/{}_glotaran.ascii".format(self.file[:-4])
         data=np.vstack((self.headers,self.body))
         np.savetxt(filename, data, fmt="%s", delimiter='\t')
         return data
