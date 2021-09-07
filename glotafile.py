@@ -26,7 +26,7 @@ class Glotafile:
     def headers(self):
         wavelengths=self.parse_wavelengths()
         headers_=np.zeros((int(wavelengths.shape[0]),4),dtype=object)
-        headers_[0]=[self.file,"Holi","wavelength explicit","intensity nt"]
+        headers_[0]=[self.file,"Holi","wavelength explicit","intervalnr {}".format(wavelengths.shape[0])]
         return np.vstack((headers_.T,wavelengths))
     @property
     def body(self):
