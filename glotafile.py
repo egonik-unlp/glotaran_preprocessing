@@ -18,7 +18,7 @@ class Glotafile:
         file=open(self.file)
         list_of_lines=[line for line in file if line != "\n"]
         wavelengths_=list_of_lines[1].split(",")[1:-1]
-        wavelengths_proc=[float(re.findall(r"\d*\.\d*",wavelength)[0]) for wavelength in wavelengths_]
+        wavelengths_proc=[float(re.findall(r"\d{3}\.*\d*?",wavelength)[0]) for wavelength in wavelengths_]
         wavelengths_proc.append("")
         wavelengths=np.array(wavelengths_proc)
         file.close()
